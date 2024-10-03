@@ -6,18 +6,38 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import AppsIcon from '@mui/icons-material/Apps';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+  
 
 const MenuListItems = () => {
+
+    const icons =[
+    {
+        title:"Dashboard",
+        icon:<AppsIcon/>,
+        path:"/",
+    },
+
+    {
+        title:"Purchases",
+        icon:<ShoppingBasketIcon/>,
+        path:"/purchases",
+
+    }
+
+
+]
   return (
     <div>
         <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {icons.map((item, index) => (
+          <ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
