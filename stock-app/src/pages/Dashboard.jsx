@@ -103,9 +103,7 @@ function ResponsiveDrawer(props) {
             backgroundColor:"secondary.main",
             color:"white"
             },
-            "& .MuiSvgIcon-root":{
-              color:"white"
-            }
+            
           }}
         >
           {drawer}
@@ -118,9 +116,7 @@ function ResponsiveDrawer(props) {
             backgroundColor:"secondary.main",
             color:"white"
             },
-            "& .MuiSvgIcon-root":{
-              color:"white"
-            }  
+            
           }}
           open
         >
