@@ -3,7 +3,15 @@ import authReducer from "../features/authSlice";
 import stockReducer from "../features/stockSlice"
 
 
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
  
 
@@ -21,6 +29,12 @@ const store = configureStore({
     auth: persistedReducer,
     stock: stockReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
   devTools: process.env.NODE_ENV !== "production",
 })
 
