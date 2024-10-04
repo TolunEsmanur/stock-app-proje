@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { fetchFail, fetchStart,getFirmsSuccess } from '../features/stockSlice';
+import { fetchFail, fetchStart, getFirmsSuccess, getSalesSuccess, getStockSuccess } from '../features/stockSlice';
 
 
 
@@ -15,7 +15,7 @@ const useStockRequests = () => {
         const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/firms`,{
           headers: {Authorization:`Token ${token}`},
         })
-        dispatch(getFirmsSuccess())
+        dispatch(getFirmsSuccess(data.data))
         console.log(data);
           }catch (error) {
             dispatch(fetchFail())
@@ -25,17 +25,38 @@ const useStockRequests = () => {
     }
 
     const getSales = async ()=>{
-        try {
-          const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/sales`,{
-            headers: {Authorization:`Token ${token}`},
-          })
-          console.log(data);
-            }catch (error) {
-          console.log(error);
-            }
-    
-      }
-    return {getFirms, getSales}
+        dispatch(fetchStart())
+      try {
+        const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/sales`,{
+          headers: {Authorization:`Token ${token}`},
+        })
+        dispatch(getSalesSuccess(data.data))
+        console.log(data);
+          }catch (error) {
+            dispatch(fetchFail())
+        console.log(error);
+          }
+  
+    }
+
+    const getStock = async (path)=>{
+        dispatch(fetchStart())
+      try {
+        const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/${path}`,{
+          headers: {Authorization:`Token ${token}`},
+        })
+        dispatch(getStockSuccess({data: data.data, path}))
+        console.log(data);
+          }catch (error) {
+            dispatch(fetchFail())
+        console.log(error);
+          }
+  
+    }
+
+
+   
+    return {getFirms, getSales, getStock}
 }
 
 export default useStockRequests

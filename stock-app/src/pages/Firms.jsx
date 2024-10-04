@@ -5,12 +5,14 @@ import useStockRequests from '../services/useStockRequests'
 
   const Firms = () => {
 
-    const {getFirms, getSales} = useStockRequests()
+    const {getFirms, getSales, getStock} = useStockRequests()
     
   //sayfa yüklendikten sonra sayfaları getir!
   useEffect(() => {
-    getFirms()
-    getSales()
+    // getFirms()
+    // getSales()
+    getStock("firms")
+    getStock("sales")
   
    
   }, [])
