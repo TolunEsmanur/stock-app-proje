@@ -9,35 +9,35 @@ const useStockRequests = () => {
     const dispatch=useDispatch()
  
 
-    const getFirms = async ()=>{
-        dispatch(fetchStart())
-      try {
-        const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/firms`,{
-          headers: {Authorization:`Token ${token}`},
-        })
-        dispatch(getFirmsSuccess(data.data))
-        console.log(data);
-          }catch (error) {
-            dispatch(fetchFail())
-        console.log(error);
-          }
+    // const getFirms = async ()=>{
+    //     dispatch(fetchStart())
+    //   try {
+    //     const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/firms`,{
+    //       headers: {Authorization:`Token ${token}`},
+    //     })
+    //     dispatch(getFirmsSuccess(data.data))
+    //     console.log(data);
+    //       }catch (error) {
+    //         dispatch(fetchFail())
+    //     console.log(error);
+    //       }
   
-    }
+    // }
 
-    const getSales = async ()=>{
-        dispatch(fetchStart())
-      try {
-        const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/sales`,{
-          headers: {Authorization:`Token ${token}`},
-        })
-        dispatch(getSalesSuccess(data.data))
-        console.log(data);
-          }catch (error) {
-            dispatch(fetchFail())
-        console.log(error);
-          }
+    // const getSales = async ()=>{
+    //     dispatch(fetchStart())
+    //   try {
+    //     const {data} = await axios(`${process.env.REACT_APP_BASE_URL}/sales`,{
+    //       headers: {Authorization:`Token ${token}`},
+    //     })
+    //     dispatch(getSalesSuccess(data.data))
+    //     console.log(data);
+    //       }catch (error) {
+    //         dispatch(fetchFail())
+    //     console.log(error);
+    //       }
   
-    }
+    // }
 
     const getStock = async (path)=>{
         dispatch(fetchStart())
@@ -56,7 +56,8 @@ const useStockRequests = () => {
 
 
    
-    return {getFirms, getSales, getStock}
+    // return {getFirms, getSales}
+    return { getStock}
 }
 
 export default useStockRequests
