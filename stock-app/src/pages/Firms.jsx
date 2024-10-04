@@ -1,26 +1,35 @@
 
-import React, { useEffect } from 'react'
-import useStockRequests from '../services/useStockRequests'
+import { useEffect } from "react"
+import useStockRequests from "../services/useStockRequests"
+// import { useSelector } from "react-redux"
+// import axios from "axios"
 
+// export const getFirms = async () => {
+//   try {
+//     const { data } = await axios(`${process.env.REACT_APP_BASE_URL}/firms`, {
+//       headers: { Authorization: `Token ${token}` },
+//     })
+//     console.log(data)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
-  const Firms = () => {
+const Firms = () => {
+  // const { token } = useSelector((state) => state.auth)
+  // const { getFirms, getSales } = useStockRequests()
 
-    const {getStock} = useStockRequests()
-    
-  //sayfa yüklendikten sonra sayfaları getir!
+  const { getStock } = useStockRequests()
+
+  //? Sayfa yüklendikten sonra firmları getir
   useEffect(() => {
     // getFirms()
     // getSales()
     getStock("firms")
     getStock("sales")
-  
-   
   }, [])
 
-  
-  return (
-    <div>Firms</div>
-  )
+  return <div>Firms</div>
 }
 
 export default Firms
