@@ -50,20 +50,6 @@ function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <MenuListItems/>
-      {/* <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
-     
-      
     </div>
   );
 
@@ -113,7 +99,13 @@ function ResponsiveDrawer(props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,
+            backgroundColor:"secondary.main",
+            color:"white"
+            },
+            "& .MuiSvgIcon-root":{
+              color:"white"
+            }
           }}
         >
           {drawer}
@@ -122,7 +114,13 @@ function ResponsiveDrawer(props) {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth,
+            backgroundColor:"secondary.main",
+            color:"white"
+            },
+            "& .MuiSvgIcon-root":{
+              color:"white"
+            }  
           }}
           open
         >
