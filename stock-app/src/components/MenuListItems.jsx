@@ -60,6 +60,8 @@ const MenuListItems = () => {
           <ListItem key={index}
           disablePadding
           onClick={()=>navigate(item.path)}
+
+          //herbir li'nin içini şekillendiriyoruz(color,hover)
           sx={{
             "& .MuiSvgIcon-root": { color: "white" },
             "&:hover": { color: "red" },

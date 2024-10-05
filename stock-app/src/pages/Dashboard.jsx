@@ -19,7 +19,7 @@ import { Outlet } from 'react-router-dom';
 
 
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 function ResponsiveDrawer(props) {
     const {username} = useSelector((state)=>state.auth)
