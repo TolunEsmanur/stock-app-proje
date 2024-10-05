@@ -25,7 +25,7 @@ const AppRouter = () => {
           <Route path="firms" element={<Firms/>}/>
           <Route path="brands" element={<Brands/>}/>
           <Route path="products" element={<Products/>}/>
-        </Route>
+          </Route>
         </Route>
       </Routes>
     </Router>
