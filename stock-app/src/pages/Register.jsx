@@ -68,7 +68,10 @@ const Register = () => {
               actions.resetForm()
               actions.setSubmitting(false)
             }}
-           
+
+          //component prop'u ile formumuz harici bir component haline getirilebilir.
+          //ancak formik prop'larını bu componente geçmek gerekir.
+          
             component={(props)=> <RegisterForm {...props} />}
           
           
