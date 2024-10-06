@@ -21,7 +21,7 @@ const Firms = () => {
 
   const { getStock } = useStockRequests()
 
-  //? Sayfa yüklendikten sonra firmları getir
+  //? Sayfa yüklendikten sonra firmaları getir
   useEffect(() => {
     // getFirms()
     // getSales()
