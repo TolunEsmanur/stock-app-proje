@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography"
 import  Grid from "@mui/material/Grid"
 import { useSelector } from "react-redux"
 import FirmCard from "../components/FirmCard"
+import FirmModal from "../components/FirmModal"
 
 // import { useSelector } from "react-redux"
 // import axios from "axios"
@@ -40,6 +41,8 @@ const Firms = () => {
   <div>
     <Typography variant="h5" color="red" mb={2}>Firms</Typography>
     <Button variant="contained" x={{mb:2}}>NEW FIRM</Button>
+
+    <FirmModal/>
 
     <Grid container justifyContent={"center"} gap={2}>
 
