@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import useApiRequests from '../services/useApiRequests';
 
 const style = {
   position: 'absolute',
@@ -22,15 +23,27 @@ export default function FirmModal({handleClose,open}) {
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
 
-  const [data,setData]=useState({
-    image:"",
-    address:"",
-    phone:"",
-    name:""
-  })
+  const {postStock}=useApiRequests()
+
+  const initialState= {image:"", address:"", phone:"", name:""}
+  const [data,setData]=useState(initialState)
 
   const handleChange=(e)=>{
     setData({...data, [e.target.name]: e.target.value})
+  }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+
+    //SIRASI İLE YAPILACAKLAR:
+    //POST
+    postStock("firms",data)
+
+    //RESET FORM
+    setData(initialState)
+
+    //CLOSE MODAL
+    handleClose()
   }
 
   return (
@@ -43,7 +56,8 @@ export default function FirmModal({handleClose,open}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} component="form"
+        onSubmit={handleSubmit}>
             <TextField
              label="Firm Name"
              name="name"

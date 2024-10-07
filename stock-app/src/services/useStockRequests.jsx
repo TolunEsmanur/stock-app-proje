@@ -82,8 +82,18 @@ const useStockRequests = () => {
     }
   }
 
+  const postStock = async (path,data) => {
+    dispatch(fetchStart())
+    try {
+      await axiosToken.post(path)
+      getStock(path)
+    } catch (error) {
+      dispatch(fetchFail())
+    }
+  }
+
   //   return { getFirms, getSales }
-  return { getStock, deleteStock}
+  return { getStock, deleteStock, postStock}
 }
 
 export default useStockRequests
