@@ -7,11 +7,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
 import EditIcon from "@mui/icons-material/Edit"
+import { butonStyle } from '../style/globalStyle';
 
 export default function FirmCard({firm}) {
-  const butonStyle={
-    "&:hover":{color:"red", cursor:"pointer"}
-  }
+ 
   return (
     <Card sx={{
       display:"flex",
