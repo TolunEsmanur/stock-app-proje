@@ -1,6 +1,7 @@
-
 import { useEffect } from "react"
 import useStockRequests from "../services/useStockRequests"
+import { Button, Typography } from "@mui/material"
+
 // import { useSelector } from "react-redux"
 // import axios from "axios"
 
@@ -26,10 +27,14 @@ const Firms = () => {
     // getFirms()
     // getSales()
     getStock("firms")
-    getStock("sales")
+    
   }, [])
 
-  return <div>Firms</div>
+  return <div>
+    <Typography variant="h5" color="red" mb={2}>Firms</Typography>
+    <Button variant="contained">NEW FIRM</Button>
+
+   </div>
 }
 
 export default Firms
