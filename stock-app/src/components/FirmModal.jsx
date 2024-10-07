@@ -1,8 +1,9 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 
 const style = {
   position: 'absolute',
@@ -21,6 +22,17 @@ export default function FirmModal({handleClose,open}) {
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
 
+  const [data,setData]=useState({
+    image:"",
+    address:"",
+    phone:"",
+    name:""
+  })
+
+  const handleChange=(e)=>{
+    setData({...data, [e.target.name]: e.target.value})
+  }
+
   return (
     <div>
       
@@ -31,12 +43,54 @@ export default function FirmModal({handleClose,open}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <TextField
+             label="Firm Name"
+             name="name"
+             id="name"
+             type="text"
+             variant="outlined"
+             value={data.name}
+             onChange={handleChange}
+             />
+
+            <TextField
+             label="Phone"
+             name="phone"
+             id="phone"
+             type="tel"
+             variant="outlined"
+             value={data.phone}
+             onChange={handleChange}
+             />
+
+            <TextField
+             label="Address"
+             name="address"
+             id="address"
+             type="text"
+             variant="outlined"
+             value={data.address}
+             onChange={handleChange}
+             />
+
+            <TextField
+             label="Image"
+             name="image"
+             id="image"
+             type="url"
+             variant="outlined"
+             value={data.image}
+             onChange={handleChange}
+             />  
+
+            <Button
+            variant="contained"
+            type="submit">
+            Submit
+            </Button>      
+        </Box>
+
         </Box>
       </Modal>
     </div>
