@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import useStockRequests from "../services/useStockRequests"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
@@ -28,6 +28,10 @@ const Firms = () => {
   const { getStock } = useStockRequests()
   const {firms} =useSelector((state)=>state.stock)
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   //? Sayfa yüklendikten sonra firmaları getirmek için
   useEffect(() => {
     // getFirms()
@@ -40,9 +44,9 @@ const Firms = () => {
   return (
   <div>
     <Typography variant="h5" color="red" mb={2}>Firms</Typography>
-    <Button variant="contained" x={{mb:2}}>NEW FIRM</Button>
+    <Button variant="contained" x={{mb:2}} onClick={handleOpen}>NEW FIRM</Button>
 
-    <FirmModal/>
+    <FirmModal open={open} handleClose={handleClose} />
 
     <Grid container justifyContent={"center"} gap={2}>
 
