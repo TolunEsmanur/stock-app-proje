@@ -1,5 +1,6 @@
 // import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
+import {toastErrorNotify, toastSuccessNotify} from "../helper/ToastNotify"
 import {
   fetchFail,
   fetchStart,
@@ -77,8 +78,10 @@ const useStockRequests = () => {
     try {
       await axiosToken.delete(`${path}/${id}`)
       getStock(path)
+      toastSuccessNotify("silme işlemi başarılı")
     } catch (error) {
       dispatch(fetchFail())
+      toastErrorNotify("silme işlemi başarısız")
     }
   }
 
