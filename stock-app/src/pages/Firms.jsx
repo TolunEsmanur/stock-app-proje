@@ -34,15 +34,17 @@ const Firms = () => {
     getStock("firms")
     
   }, [])
+  console.log(firms);
 
-  return <div>
+  return (
+  <div>
     <Typography variant="h5" color="red" mb={2}>Firms</Typography>
-    <Button variant="contained">NEW FIRM</Button>
+    <Button variant="contained" x={{mb:2}}>NEW FIRM</Button>
 
-    <Grid container>
+    <Grid container justifyContent={"center"} gap={2}>
 
-      {firms.map((firm)=>(
-        <Grid item>
+      {firms && firms.map((firm)=>(
+        <Grid item key={firm._id}>
           <FirmCard firm={firm}/>
         </Grid>
       ))}
@@ -51,6 +53,7 @@ const Firms = () => {
 
 
    </div>
+   )
 }
 
 export default Firms

@@ -5,29 +5,46 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
+import EditIcon from "@mui/icons-material/Edit"
 
 export default function FirmCard({firm}) {
+  const butonStyle={
+    "&:hover":{color:"red", cursor:"pointer"}
+  }
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"space-between",
+      alignItems:"center",
+      width:300,
+      height:400,
+      p:2
+       }}>
+     
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {firm.name}
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+         {firm.address}
+        </Typography>
+      </CardContent>
+
       <CardMedia
         component="img"
         alt={firm.name}
         height="140"
         image={firm.image}
-        
+        sx={{objectFit:"contain"}}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
+      <Typography variant="body2" sx={{ color: 'text.secondary', mt:2 }}>
+         {firm.phone}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <DeleteOutlineIcon sx={butonStyle}/>
+      <EditIcon sx={butonStyle}/>
       </CardActions>
     </Card>
   );
