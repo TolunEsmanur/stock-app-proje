@@ -28,12 +28,19 @@ const Firms = () => {
   const { getStock } = useStockRequests()
   const {firms} =useSelector((state)=>state.stock)
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const initialState= {image:"", address:"", phone:"", name:""}
   const [data,setData]=useState(initialState)
+
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false)
+    setData(initialState)
+  }
+
+  
+
 
   //? Sayfa yüklendikten sonra firmaları getirmek için
   useEffect(() => {
