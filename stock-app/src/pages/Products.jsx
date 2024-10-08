@@ -3,6 +3,7 @@ import useStockRequests from "../services/useStockRequests"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import ProductModal from "../components/ProductModal"
+import ProductTable from "../components/ProductTable"
 
 
 const Products = () => {
@@ -31,13 +32,13 @@ const Products = () => {
     getStock("products")
     
   }, [])
-  console.log(firms);
+  
 
   return (
   <div>
     <Typography variant="h5" color="error" mb={2}>Products</Typography>
     <Button variant="contained" sx={{mb:2}} onClick={handleOpen}>NEW PRODUCT</Button>
-
+    <ProductTable/>
     <ProductModal open={open} handleClose={handleClose} data={data} setData={setData} />
 
     
