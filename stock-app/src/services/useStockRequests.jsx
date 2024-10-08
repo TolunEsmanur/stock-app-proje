@@ -88,15 +88,28 @@ const useStockRequests = () => {
   const postStock = async (path,data) => {
     dispatch(fetchStart())
     try {
-      await axiosToken.post(path)
+      await axiosToken.post(path,data)
       getStock(path)
     } catch (error) {
       dispatch(fetchFail())
     }
   }
+   
+  //put işlemi uptade işlemidir,değiştirilecek verinin tamamı gönderilir.
+  const putStock = async (path,data) => {
+    dispatch(fetchStart())
+    try {
+      await axiosToken.put(`/${path}/${data._id}`,data)
+      toastSuccessNotify('güncelleme başarılı')
+      getStock(path)
+    } catch (error) {
+      dispatch(fetchFail())
+      toastErrorNotify('güncelleme başaırısız oldu')
+    }
+  }
 
   //   return { getFirms, getSales }
-  return { getStock, deleteStock, postStock}
+  return { getStock, deleteStock, postStock,putStock}
 }
 
 export default useStockRequests

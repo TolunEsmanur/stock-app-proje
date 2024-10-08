@@ -30,17 +30,19 @@ export default function FirmModal({handleClose,open,data,setData}) {
   const handleChange=(e)=>{
     setData({...data, [e.target.name]: e.target.value})
   }
-
+  
   const handleSubmit = (e)=>{
     e.preventDefault()
 
-    //SIRASI İLE YAPILACAKLAR:
+  if (data._id){
+    //PUT
+    postStock("firms",data)
+    }else{
     //POST
     postStock("firms",data)
-
+    }
     //RESET FORM
     setData({image:"", address:"", phone:"", name:""})
-
     //CLOSE MODAL
     handleClose()
   }
@@ -60,7 +62,7 @@ export default function FirmModal({handleClose,open,data,setData}) {
             <TextField
              label="Firm Name"
              name="name"
-             id="name"
+             id="name" 
              type="text"
              variant="outlined"
              value={data.name}

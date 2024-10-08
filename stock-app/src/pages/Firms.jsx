@@ -46,15 +46,15 @@ const Firms = () => {
 
   return (
   <div>
-    <Typography variant="h5" color="red" mb={2}>Firms</Typography>
-    <Button variant="contained" x={{mb:2}} onClick={handleOpen}>NEW FIRM</Button>
+    <Typography variant="h5" color="error" mb={2}>Firms</Typography>
+    <Button variant="contained" sx={{mb:2}} onClick={handleOpen}>NEW FIRM</Button>
 
     <FirmModal open={open} handleClose={handleClose} data={data} setData={setData} />
 
     <Grid container justifyContent={"center"} gap={2}>
 
-      {firms.map((firm)=>(
-        <Grid item key={firm._id}>
+      {firms.map((firm,index)=>(
+        <Grid item key={index}>
           <FirmCard firm={firm} handleOpen={handleOpen} data={data} setData={setData}/>
         </Grid>
       ))}

@@ -40,9 +40,11 @@ export default function FirmCard({firm,handleOpen,setData}) {
         image={firm.image}
         sx={{objectFit:"contain"}}
       />
+
       <Typography variant="body2" sx={{ color: 'text.secondary', mt:2 }}>
          {firm.phone}
-        </Typography>
+      </Typography>
+
       <CardActions>
       <DeleteOutlineIcon sx={butonStyle}
       onClick={()=>deleteStock("firms", firm._id)}/>
