@@ -18,12 +18,9 @@ const style = {
   p: 4,
 };
 
-export default function FirmModal({handleClose,open,data,setData}) {
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
-
-  const {postStock, putStock}=useStockRequests()
+export default function ProductModal({handleClose,open,data,setData}) {
+  
+const {postStock, putStock}=useStockRequests()
 
 
 
@@ -70,38 +67,9 @@ export default function FirmModal({handleClose,open,data,setData}) {
              required
              />
 
-            <TextField
-             label="Phone"
-             name="phone"
-             id="phone"
-             type="tel"
-             variant="outlined"
-             value={data.phone}
-             onChange={handleChange}
-             required
-             />
+            
 
-            <TextField
-             label="Address"
-             name="address"
-             id="address"
-             type="text"
-             variant="outlined"
-             value={data.address}
-             onChange={handleChange}
-             required
-             />
-
-            <TextField
-             label="Image"
-             name="image"
-             id="image"
-             type="url"
-             variant="outlined"
-             value={data.image}
-             onChange={handleChange}
-             required
-             />  
+            
 
             <Button
             variant="contained"

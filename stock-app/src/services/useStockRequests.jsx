@@ -95,7 +95,7 @@ const useStockRequests = () => {
     }
   }
    
-  //put işlemi uptade işlemidir,değiştirilecek verinin tamamı gönderilir.
+  //put işlemi update işlemidir,değiştirilecek verinin tamamı gönderilir.
   const putStock = async (path,data) => {
     dispatch(fetchStart())
     try {
