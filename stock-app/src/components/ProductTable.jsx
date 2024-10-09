@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
+import DeleteIcon from "@mui/icons-material/Delete"
 import { useSelector } from 'react-redux';
 
 const columns = [
@@ -10,14 +10,14 @@ const columns = [
     field: 'categoryId',
     headerName: 'Categories',
     width: 150,
-    valueGetter: (value)=>(value.name),
-      
+    valueGetter: (value)=>value?.name,
     editable: true,
   },
   {
-    field: 'brands',
+    field: 'brandId',
     headerName: 'Brands',
     width: 150,
+    valueGetter: (value)=>value?.name,
     editable: true,
   },
   {
@@ -28,21 +28,22 @@ const columns = [
     editable: true,
   },
   {
-    field: 'stock',
+    field: 'quantity',
     headerName: 'Stock',
     type: 'number',
     width: 110,
     editable: true,
   },
-  // {
-  //   field: "actions",
-  //   type: "actions",
+  {
+    field: "actions",
+    headerName:'Operations',
+    type: "actions",
     
-  //   getActions: (param) => [
-  //       <GridActionsCellItem icon={ DeleteForeverIcon} label="Delete"/>,
+    getActions: (param) => [
+        <GridActionsCellItem icon={ <DeleteIcon/>} label="Delete"/>,
         
-  //      ]
-  //     },
+       ]
+      },
     ];
 
 const getRowId = (row)=>row._id
