@@ -2,13 +2,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
+import { useSelector } from 'react-redux';
 
 const columns = [
   { field: '_id', headerName: '#', width: 90 },
   {
-    field: 'categories',
+    field: 'categoryId',
     headerName: 'Categories',
     width: 150,
+    valueGetter: (value)=>(value.name),
+      
     editable: true,
   },
   {
@@ -31,24 +34,26 @@ const columns = [
     width: 110,
     editable: true,
   },
-  {
-    field: "actions",
-    type: "actions",
+  // {
+  //   field: "actions",
+  //   type: "actions",
     
-    getActions: (param) => [
-        <GridActionsCellItem icon={ DeleteForeverIcon} label="Delete"/>,
+  //   getActions: (param) => [
+  //       <GridActionsCellItem icon={ DeleteForeverIcon} label="Delete"/>,
         
-       ]
-      },
+  //      ]
+  //     },
     ];
 
-const rows = [];
+const getRowId = (row)=>row._id
 
 export default function ProductTable() {
+
+  const {products} = useSelector((state)=>state.stock)
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={products}
         columns={columns}
         initialState={{
           pagination: {
@@ -59,6 +64,7 @@ export default function ProductTable() {
         }}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
+        getRowId={getRowId}
       />
     </Box>
   );
