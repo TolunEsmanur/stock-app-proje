@@ -1,10 +1,13 @@
-import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import InputLabel from "@mui/material/InputLabel"
+import MenuItem from "@mui/material/MenuItem"
+import FormControl from "@mui/material/FormControl"
+import Select from "@mui/material/Select"
 import useStockRequests from '../services/useStockRequests';
+import { useSelector } from 'react-redux';
 
 const style = {
   position: 'absolute',
@@ -21,6 +24,7 @@ const style = {
 export default function ProductModal({handleClose,open,data,setData}) {
   
 const {postStock, putStock}=useStockRequests()
+const { categories, brands } = useSelector((state) => state.stock)
 
 
 
@@ -56,6 +60,44 @@ const {postStock, putStock}=useStockRequests()
         <Box sx={style}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }} component="form"
         onSubmit={handleSubmit}>
+
+      <FormControl fullWidth>
+              <InputLabel id="categoryId">Categories</InputLabel>
+              <Select
+                labelId="categoryId"
+                id="categoryId"
+                name="categoryId"
+                value={data.categoryId}
+                label="Categories"
+                onChange={handleChange}
+                required>
+                {categories.map((item) => (
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+      </FormControl>
+
+            <FormControl fullWidth>
+              <InputLabel id="brands">Brands</InputLabel>
+              <Select
+                labelId="brands"
+                id="brandId"
+                name="brandId"
+                value={data.brandId}
+                label="brands"
+                onChange={handleChange}
+                required
+              >
+                {brands.map((item) => (
+                  <MenuItem key={item._id} value={item._id}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
             <TextField
              label="Firm Name"
              name="name"

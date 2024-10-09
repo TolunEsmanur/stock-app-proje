@@ -3,14 +3,15 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid';
 import DeleteIcon from "@mui/icons-material/Delete"
 import { useSelector } from 'react-redux';
+import useStockRequests from "../services/useStockRequests"
 
 
 const getRowId = (row)=>row._id
 
 export default function ProductTable() {
-
+  const {deleteStock} = useStockRequests()
   const {products} = useSelector((state)=>state.stock)
-  
+
   const columns = [
     { field: "_id", headerName: "#", flex: 1.2, minWidth: 140 },
     {
@@ -64,7 +65,7 @@ export default function ProductTable() {
         return [
           <GridActionsCellItem
             icon={<DeleteIcon />}
-           
+            onClick={()=>deleteStock("products",props.id)}
             label="Delete"
           />,
         ]
