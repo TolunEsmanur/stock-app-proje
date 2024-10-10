@@ -12,7 +12,7 @@ const Products = () => {
   const { getStock } = useStockRequests()
  
 
-  const initialState= {image:"", address:"", phone:"", name:""}
+  const initialState= {categoryId:"", brandId:"",name:""}
   const [data,setData]=useState(initialState)
 
 
@@ -30,6 +30,8 @@ const Products = () => {
   useEffect(() => {
     
     getStock("products")
+    getStock("categories")
+    getStock("brands")
     
   }, [])
   

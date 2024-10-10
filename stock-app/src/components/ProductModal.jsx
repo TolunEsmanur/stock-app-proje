@@ -23,7 +23,7 @@ const style = {
 
 export default function ProductModal({handleClose,open,data,setData}) {
   
-const {postStock, putStock}=useStockRequests()
+const {postStock}=useStockRequests()
 const { categories, brands } = useSelector((state) => state.stock)
 
 
@@ -34,17 +34,7 @@ const { categories, brands } = useSelector((state) => state.stock)
   
   const handleSubmit = (e)=>{
     e.preventDefault()
-
-  if (data._id){
-    //PUT
-    putStock("firms",data)
-    }else{
-    //POST
-    postStock("firms",data)
-    }
-    //RESET FORM
-    setData({image:"", address:"", phone:"", name:""})
-    //CLOSE MODAL
+    postStock("products",data)
     handleClose()
   }
 
@@ -116,7 +106,7 @@ const { categories, brands } = useSelector((state) => state.stock)
             <Button
             variant="contained"
             type="submit">
-            {data._id ? "UPDATE FIRM" : "ADD FIRM"}
+           ADD PRODUCT
             </Button>      
         </Box>
 
