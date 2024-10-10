@@ -6,6 +6,7 @@ import  Grid from "@mui/material/Grid"
 import { useSelector } from "react-redux"
 import FirmCard from "../components/FirmCard"
 import FirmModal from "../components/FirmModal"
+import { CardSkeleton, NoDataMessage } from "../components/Messages"
 
 // import { useSelector } from "react-redux"
 // import axios from "axios"
@@ -26,7 +27,7 @@ const Firms = () => {
   // const { getFirms, getSales } = useStockRequests()
 
   const { getStock } = useStockRequests()
-  const {firms} =useSelector((state)=>state.stock)
+  const {firms,loading} =useSelector((state)=>state.stock)
 
   const initialState= {image:"", address:"", phone:"", name:""}
   const [data,setData]=useState(initialState)
@@ -58,19 +59,25 @@ const Firms = () => {
 
     <FirmModal open={open} handleClose={handleClose} data={data} setData={setData} />
 
-    <Grid container justifyContent={"center"} gap={2}>
+    {loading && (
+      <CardSkeleton>
+        <FirmCard/>
+      </CardSkeleton>
+    )}
 
-      {firms.map((firm,index)=>(
-        <Grid item key={index}>
-          <FirmCard firm={firm} handleOpen={handleOpen} data={data} setData={setData}/>
-        </Grid>
-      ))}
+    {!loading && !firms.length && <NoDataMessage/>}
+    {!loading && firms.length > 0 && (
 
-    </Grid>
-
-
-   </div>
-   )
+      <Grid container justifyContent={"center"} gap={2}>
+        {firms.map((firm,index)=>(
+         <Grid item key={index}>
+           <FirmCard firm={firm} handleOpen={handleOpen} data={data} setData={setData}/>
+         </Grid>
+       ))}
+      </Grid>
+    )}
+  </div>
+  )
 }
 
 export default Firms
