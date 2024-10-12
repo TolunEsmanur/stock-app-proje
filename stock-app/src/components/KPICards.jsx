@@ -41,13 +41,13 @@ const KPICards = () => {
 
 ]
   return (
-  <Stack>
+  <Stack justifyContent={"center"} alignItems={"center"} flexWrap={"wrap"} flexDirection={"row"} gap={2} >
     {cardData.map((item)=>(
-    <Paper elevation={5} sx={{display:"flex"}}> 
-    <Avatar sx={{width:60, height:60, backgroundColor:item.bgColor, color:item.color }}>{item.icon}</Avatar>
+    <Paper elevation={5} sx={{display:"flex", width:275, p:1, gap:3 }}> 
+    <Avatar sx={{width:60, height:60, backgroundColor:item.bgColor, color:item.color, ml:3 }}>{item.icon}</Avatar>
     <Box>
-      <Typography>{item.title}</Typography>
-      <Typography>{item.amount}</Typography>
+      <Typography variant='button'>{item.title}</Typography>
+      <Typography variant='h5'>{item.amount}</Typography>
     </Box>
     </Paper>
     ))}
