@@ -7,15 +7,25 @@ import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import { deepPurple, pink, orange} from '@mui/material/colors';
 import { Box, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 const KPICards = () => {
+
+  const { sales, purchases } = useSelector((state) => state.stock)
+
+  const totalSales = sales.reduce((acc, sale) => acc + sale.amount, 0)
+  const totalPurchases = purchases.reduce(
+    (acc, purchase) => acc + purchase.amount,
+    0
+  )
+
   const cardData=[{
     id:1,
     icon:<MonetizationOnIcon sx={{fontSize:"2rem"}}/>,
     title:"sales",
     bgColor: deepPurple[100],
     color: deepPurple[500],
-    amount: "$12345"
+    amount: 
 
   },
 
@@ -25,7 +35,7 @@ const KPICards = () => {
     title:"profit",
     bgColor:pink[100],
     color: pink[900],
-    amount: "$12345"
+    amount:  
 
   },
 
