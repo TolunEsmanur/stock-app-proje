@@ -14,10 +14,7 @@ const KPICards = () => {
   const { sales, purchases } = useSelector((state) => state.stock)
 
   const totalSales = sales.reduce((acc, sale) => acc + sale.amount, 0)
-  const totalPurchases = purchases.reduce(
-    (acc, purchase) => acc + purchase.amount,
-    0
-  )
+  const totalPurchases = purchases.reduce((acc, purchase) => acc + purchase.amount,0)
 
   const cardData=[{
     id:1,
@@ -25,7 +22,7 @@ const KPICards = () => {
     title:"sales",
     bgColor: deepPurple[100],
     color: deepPurple[500],
-    amount: 
+    amount: "$" + totalSales.toLocaleString("tr-TR")
 
   },
 
@@ -35,7 +32,7 @@ const KPICards = () => {
     title:"profit",
     bgColor:pink[100],
     color: pink[900],
-    amount:  
+    amount: "$" + (totalSales-totalPurchases).toLocaleString("tr-TR")
 
   },
 
@@ -45,7 +42,7 @@ const KPICards = () => {
     title:"purchases",
     bgColor: orange[100],
     color: orange[900],
-    amount: "$12345"
+    amount: "$" + totalPurchases.toLocaleString("tr-TR")
 
   },
 
