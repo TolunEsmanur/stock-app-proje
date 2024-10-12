@@ -7,6 +7,7 @@ import {
   //   getFirmsSuccess,
   //   getSalesSuccess,
   getStockSuccess,
+  getProSaleBraSuccess
 } from "../features/stockSlice"
 import useAxios from "./useAxios"
 
@@ -109,8 +110,27 @@ const useStockRequests = () => {
     }
   }
 
+  const getProSaleBrand = async () => {
+    dispatch(fetchStart())
+    try {
+      const [pro, sal, bra] = await Promise.all([
+        axiosToken("products"),
+        axiosToken("sales"),
+        axiosToken("brands"),
+      ])
+      const products = pro.data.data
+      const sales = sal.data.data
+      const brands = bra.data.data
+      dispatch(getProSaleBraSuccess({ products, sales, brands }))
+    } catch (error) {
+      toastErrorNotify(`çekme başarısız oldu.`)
+      dispatch(fetchFail())
+      console.log(error)
+    }
+  }
+
   //   return { getFirms, getSales }
-  return { getStock, deleteStock, postStock,putStock}
+  return { getStock, deleteStock, postStock,putStock,getProSaleBrand}
 }
 
 export default useStockRequests
