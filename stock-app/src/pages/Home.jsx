@@ -9,10 +9,6 @@ const Home = () => {
   useEffect(()=>{
     getStock("purchases")
     getStock("sales")
-
-
-
-
   }, [])
   
   return (

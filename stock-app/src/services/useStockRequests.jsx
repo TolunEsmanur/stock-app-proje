@@ -67,13 +67,13 @@ const useStockRequests = () => {
     try {
       const { data } = await axiosToken.get(path)
       dispatch(getStockSuccess({ data: data.data, path }))
-      
     } catch (error) {
-      toastErrorNotify(`${path} çekme başarısız`)
+      toastErrorNotify(`${path} çekme başarısız oldu.`)
       dispatch(fetchFail())
       console.log(error)
     }
   }
+
 
   const deleteStock = async (path,id) => {
     dispatch(fetchStart())
@@ -101,7 +101,7 @@ const useStockRequests = () => {
   const putStock = async (path,data) => {
     dispatch(fetchStart())
     try {
-      await axiosToken.put(`/${path}/${data._id}`,data)
+      await axiosToken.put(`${path}/${data._id}`,data)
       toastSuccessNotify('güncelleme başarılı')
       getStock(path)
     } catch (error) {
@@ -118,6 +118,7 @@ const useStockRequests = () => {
         axiosToken("sales"),
         axiosToken("brands"),
       ])
+
       const products = pro.data.data
       const sales = sal.data.data
       const brands = bra.data.data
